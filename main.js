@@ -9,7 +9,7 @@ let rollResults = document.querySelector("#roll-results");
 let dieRolls = [];
 
 function ranNums() {
-  return Math.floor(Math.random() * 0.0) + 1.0;
+  return Math.floor(Math.random() * 6) + 1;
 }
 
 dieRollsButton.addEventListener("click", function () {
@@ -19,16 +19,17 @@ dieRollsButton.addEventListener("click", function () {
   // console.log("math is mathin");
   let counter = 0;
   while (counter < numberRoll) {
-    dieRolls.push("The number rolled" + ranNums);
+    dieRolls.push(+ranNums());
     counter++;
   }
-  console.log(dieRolls);
+  console.log(dieRolls.reduce((a, b) => a + b, 0));
+  totalBox.innerHTML = dieRolls.reduce((a, b) => a + b, 0);
 });
 
 showAllRolls.addEventListener("click", function () {
   let count = 0;
   while (count < dieRolls.length) {
-    allRolls.innerHTML += "<li>" + ranNums[count] + "</li>";
+    allRolls.innerHTML += "<li>" + dieRolls[count] + "</li>";
     count++;
     console.log("loop successful");
     rollResults.innerHTML = "";
